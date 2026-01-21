@@ -1,0 +1,72 @@
+---
+const skills = [
+  { name: 'JavaScript', icon: '⚡' },
+  { name: 'TypeScript', icon: '📘' },
+  { name: 'React', icon: '⚛️' },
+  { name: 'Node.js', icon: '🟢' },
+  { name: 'NestJS', icon: '🐈' },
+  { name: 'Python', icon: '🐍' },
+  { name: 'MongoDB', icon: '🍃' },
+  { name: 'PostgreSQL', icon: '🐘' },
+  { name: 'Docker', icon: '🐳' },
+  { name: 'Git', icon: '📦' },
+  { name: 'Astro', icon: '🚀' },
+  { name: 'Linux', icon: '🐧' },
+];
+---
+
+<section id="skills" class="section skills">
+  <div class="container">
+    <h2 class="section-title">Mis <span>Skills</span></h2>
+    
+    <div class="skills-grid">
+      {skills.map((skill, index) => (
+        <div class="skill-card glass-card" style={`--delay: ${index * 0.05}s`}>
+          <span class="skill-icon">{skill.icon}</span>
+          <span class="skill-name">{skill.name}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: var(--space-md);
+  }
+  
+  .skill-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-lg);
+    text-align: center;
+    cursor: default;
+    animation: fade-in-up 0.5s ease-out forwards;
+    animation-delay: var(--delay);
+    opacity: 0;
+  }
+  
+  .skill-icon {
+    font-size: 2.5rem;
+    transition: transform var(--transition-normal);
+  }
+  
+  .skill-card:hover .skill-icon {
+    transform: scale(1.2);
+  }
+  
+  .skill-name {
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+  
+  @media (max-width: 480px) {
+    .skills-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

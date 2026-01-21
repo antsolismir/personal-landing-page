@@ -1,0 +1,141 @@
+---
+const navLinks = [
+  { href: '#about', label: 'Sobre mí' },
+  { href: '#skills', label: 'Skills' },
+  { href: '#contact', label: 'Contacto' },
+];
+---
+
+<header class="header">
+  <div class="container header-content">
+    <a href="/" class="logo">
+      <span class="logo-bracket">&lt;</span>
+      <span class="logo-text">antsolismir</span>
+      <span class="logo-bracket">/&gt;</span>
+    </a>
+    
+    <nav class="nav">
+      <ul class="nav-list">
+        {navLinks.map((link) => (
+          <li>
+            <a href={link.href} class="nav-link">{link.label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+    
+    <button class="mobile-menu-btn" aria-label="Toggle menu">
+      <span class="hamburger"></span>
+    </button>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  
+  .header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+  }
+  
+  .logo {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+  
+  .logo-bracket {
+    color: var(--accent-primary);
+  }
+  
+  .logo-text {
+    color: var(--text-primary);
+  }
+  
+  .nav-list {
+    display: flex;
+    gap: var(--space-lg);
+  }
+  
+  .nav-link {
+    font-weight: 500;
+    color: var(--text-secondary);
+    transition: color var(--transition-fast);
+    position: relative;
+  }
+  
+  .nav-link:hover {
+    color: var(--accent-primary);
+  }
+  
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent-primary);
+    transition: width var(--transition-normal);
+  }
+  
+  .nav-link:hover::after {
+    width: 100%;
+  }
+  
+  .mobile-menu-btn {
+    display: none;
+    width: 30px;
+    height: 24px;
+    position: relative;
+  }
+  
+  .hamburger,
+  .hamburger::before,
+  .hamburger::after {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: var(--text-primary);
+    transition: all var(--transition-normal);
+  }
+  
+  .hamburger {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .hamburger::before {
+    content: '';
+    top: -8px;
+  }
+  
+  .hamburger::after {
+    content: '';
+    bottom: -8px;
+  }
+  
+  @media (max-width: 768px) {
+    .nav {
+      display: none;
+    }
+    
+    .mobile-menu-btn {
+      display: block;
+    }
+  }
+</style>
